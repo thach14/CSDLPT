@@ -1,25 +1,22 @@
 ﻿--Data
-insert into ChiNhanh values ('CN01',N'Đà Lạt')
-insert into ChiNhanh values ('CN02',N'TPHCM')
-select * from ChiNhanh;
 set dateformat dmy;
-insert into DuAn values ('DA01',N'Dự án Web','14-03-2022',1000000)
-insert into DuAn values ('DA02',N'Dự án todolist','14-03-2022',2000000)
-insert into DuAn values ('DA03',N'Dự án Web thời khóa biểu','14-03-2022',5000000)
-insert into DuAn values ('DA04',N'Dự án Web bán đồ ăn','14-03-2022',1000000)
-insert into DuAn values ('DA05',N'Dự án Web quần áo','14-03-2022',4000000)
-insert into DuAn values ('DA06',N'Dự án Web bán trang sức','14-03-2022',7000000)
-insert into DuAn values ('DA07',N'Dự án Game bắn súng','14-03-2022',8000000)
-insert into DuAn values ('DA08',N'Dự án Game đối kháng','14-03-2022',1000000)
-insert into DuAn values ('DA09',N'Dự án Game liên minh','14-03-2022',1000000)
-insert into DuAn values ('DA10',N'Dự án Game empire','14-03-2022',2000000)
+insert into ChiNhanh(TenCN) values (N'Đà Lạt')
+insert into ChiNhanh(TenCN) values (N'TPHCM')
+select * from ChiNhanh;
+
+insert into DuAn(IDCN,TenDuAn,NgayBatDau,KinhPhi,ThoiHan, Status) values (1,N'Dự án Web','14-03-2022',1000000,6,0)
+insert into DuAn(IDCN,TenDuAn,NgayBatDau,KinhPhi,ThoiHan, Status) values (1,N'Dự án todolist','14-03-2022',2000000,12,0)
+insert into DuAn(IDCN,TenDuAn,NgayBatDau,KinhPhi,ThoiHan, Status) values (2,N'Dự án Web thời khóa biểu','14-03-2022',5000000,24,0)
+insert into DuAn(IDCN,TenDuAn,NgayBatDau,KinhPhi,ThoiHan, Status) values (2,N'Dự án Web bán đồ ăn','14-03-2022',1000000,8,0)
+
 select * from DuAn;
 
-insert into NhanVien values ('NV001',N'Vũ Đình Phúc','10-04-2000',N'Phạm Hồng Thái - Đà Lạt','Nhân viên','CN01')
-insert into NhanVien values ('NV002',N'Đặng Ngọc Thạch','14-03-2000',N'Phù Đổng Thiên Vương - P8 - Đà Lạt','Nhân viên','CN01')
-insert into NhanVien values ('NV003',N'Nguyễn Hồng Phượng','31-07-2000',N'Phù Đổng Thiên Vương - P8 - Đà Lạt','Nhân viên','CN01')
-insert into NhanVien values ('NV004',N'Hoàng Vinh Quang','01-01-2000',N'Phù Đổng Thiên Vương - P8 - Đà Lạt','Nhân viên','CN02')
-insert into NhanVien values ('NV005',N'Thomas Gavin','10-04-2000',N'Phù Đổng Thiên Vương - P8 - Đà Lạt','Giám đốc','CN02')
+insert into NhanVien(IDCN,CMND,HoTen,NgaySinh,DiaChi,ChucVu,Status) values (1,'251139041',N'Vũ Đình Phúc','10-04-2000',N'Phạm Hồng Thái - Đà Lạt','Nhân viên',1)
+insert into NhanVien(IDCN,CMND,HoTen,NgaySinh,DiaChi,ChucVu,Status) values (1,'251165719',N'Đặng Ngọc Thạch','14-03-2000',N'Phù Đồng Thiên Vương - Đà Lạt','Nhân viên',1)
+insert into NhanVien(IDCN,CMND,HoTen,NgaySinh,DiaChi,ChucVu,Status) values (1,'251169043',N'Nguyễn Hồng Phượng','31-07-2000',N'Nguyên Tử Lực - Đà Lạt','Nhân viên',1)
+insert into NhanVien(IDCN,CMND,HoTen,NgaySinh,DiaChi,ChucVu,Status) values (2,'251111111',N'Hoàng Vinh Quang','01-04-2000',N'Đà Lạt','Nhân viên',1)
+insert into NhanVien(IDCN,CMND,HoTen,NgaySinh,DiaChi,ChucVu,Status) values (2,'251139041',N'Vũ Đình Phúc','01-01-2000',N'Đà Lạt','Nhân viên',1)
+insert into NhanVien(IDCN,CMND,HoTen,NgaySinh,DiaChi,ChucVu,Status) values (2,'251139041',N'Vũ Đình Phúc','01-01-2000',N'Đà Lạt','Nhân viên',1)
 select * from NhanVien;
 
 insert into VaiTro values (N'Team Leader',30000)
@@ -35,6 +32,7 @@ insert into PhanCong values ('NV003','DA04',2,'14-03-2022')
 insert into PhanCong values ('NV001','DA05',4,'14-03-2022')
 insert into PhanCong values ('NV001','DA06',5,'14-03-2022')
 select * from PhanCong;
+select * from TraLuong;
 
 --Nhan Vien
 create proc ThemNhanVien
