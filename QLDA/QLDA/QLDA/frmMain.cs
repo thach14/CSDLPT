@@ -38,13 +38,15 @@ namespace QLDA
 
 		private void btnThemDA_Click(object sender, EventArgs e)
 		{
-			frmDuAn frmDuAn = new frmDuAn();
+			frmDuAn frmDuAn = new frmDuAn("Add");
 			frmDuAn.ShowDialog();
+			getDA();
 		}
 
 		private void tsmiChiTietDA_Click(object sender, EventArgs e)
 		{
-			frmChiTietDA frmChiTietDA = new frmChiTietDA();
+			DataRow row = (dgvDuAn.SelectedRows[0].DataBoundItem as DataRowView).Row;
+			frmChiTietDA frmChiTietDA = new frmChiTietDA(row["ID"].ToString(),cbbChiNhanh.SelectedIndex);
 			frmChiTietDA.ShowDialog();
 		}
 
@@ -175,5 +177,62 @@ namespace QLDA
 			connect(cbbChiNhanh.SelectedIndex, sql);
 			getNV();
 		}
+
+        private void tsmiSuaDA_Click(object sender, EventArgs e)
+        {
+			DataRow row = (dgvDuAn.SelectedRows[0].DataBoundItem as DataRowView).Row;
+			frmDuAn frmDuAn = new frmDuAn(row["ID"].ToString());
+			frmDuAn.ShowDialog();
+			getDA();
+		}
+
+        private void tsmiKetThucDA_Click(object sender, EventArgs e)
+        {
+			DataRow row = (dgvDuAn.SelectedRows[0].DataBoundItem as DataRowView).Row;
+			string sql = String.Format("exec statusDA {0}, 1",row["ID"].ToString());
+			connect(cbbChiNhanh.SelectedIndex, sql);
+			getDA();
+        }
+		private void getLuongThang()
+		{
+			string SqlString;
+			if (cbbChiNhanh.SelectedIndex == 0)
+			{
+				SqlString = String.Format("exec luongThangCT '{0}', '{1}'", dtpFrom.Text, dtpTo.Text);
+				connect(CN, SqlString, dgvLuong);
+			}
+			else if (cbbChiNhanh.SelectedIndex == CN)
+			{
+				SqlString = String.Format("exec luongThangCN '{0}', '{1}'", dtpFrom.Text, dtpTo.Text); ;
+				connect(CN, SqlString, dgvLuong);
+			}
+			else
+			{
+				SqlString = String.Format("exec luongThangCN '{0}', '{1}'", dtpFrom.Text, dtpTo.Text); ;
+				connect(cbbChiNhanh.SelectedIndex, SqlString, dgvLuong);
+			}
+		}
+
+        private void cbLoc_CheckedChanged(object sender, EventArgs e)
+        {
+			if (cbLoc.Checked)
+			{
+				dtpFrom.Enabled = true;
+				dtpTo.Enabled = true;
+				btnLoc.Enabled = true;
+			}
+			else
+			{
+				getLuong();
+				dtpFrom.Enabled = false;
+				dtpTo.Enabled = false;
+				btnLoc.Enabled = false;
+			}
+		}
+
+        private void btnLoc_Click(object sender, EventArgs e)
+        {
+			getLuongThang();
+        }
     }
 }
