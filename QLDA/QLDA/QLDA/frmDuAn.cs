@@ -44,12 +44,12 @@ namespace QLDA
         {
 			if (action == "Add")
 			{
-				string SqlString = String.Format("exec themDA {0},'{1}','{2}','{3}','{4}'", cbbChiNhanh.SelectedIndex + 1, txtTenDA.Text, dtpNgayBD.Text, mtbPhi.Text, mtpThoiHan.Text);
+				string SqlString = String.Format("exec themDA {0},N'{1}','{2}','{3}','{4}'", cbbChiNhanh.SelectedIndex + 1, txtTenDA.Text, dtpNgayBD.Text, mtbPhi.Text, mtpThoiHan.Text);
 				connect(cbbChiNhanh.SelectedIndex + 1, SqlString);
 			}
 			else
 			{
-				string SqlString = String.Format("exec suaDA {0},'{1}','{2}','{3}','{4}'", action, txtTenDA.Text, dtpNgayBD.Text, mtbPhi.Text, mtpThoiHan.Text);
+				string SqlString = String.Format("exec suaDA {0},N'{1}','{2}','{3}','{4}'", action, txtTenDA.Text, dtpNgayBD.Text, mtbPhi.Text, mtpThoiHan.Text);
 				connect(cbbChiNhanh.SelectedIndex + 1, SqlString);
 
 			}

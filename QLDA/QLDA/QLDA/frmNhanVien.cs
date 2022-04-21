@@ -37,12 +37,12 @@ namespace QLDA
         {
 			if (action == "Add")
 			{
-				string SqlString = String.Format("exec themNV {0},'{1}','{2}','{3}','{4}','{5}'", cbbChiNhanh.SelectedIndex + 1, mtxtCMND.Text, txtHoTen.Text, dtpNgaySinh.Text, txtDiaChi.Text, txtChucVu.Text);
+				string SqlString = String.Format("exec themNV {0},'{1}',N'{2}','{3}',N'{4}',N'{5}'", cbbChiNhanh.SelectedIndex + 1, mtxtCMND.Text, txtHoTen.Text, dtpNgaySinh.Text, txtDiaChi.Text, txtChucVu.Text);
 				connect(cbbChiNhanh.SelectedIndex + 1, SqlString);
 			}
 			else
             {
-				string SqlString = String.Format("exec suaNV {0},'{1}','{2}','{3}','{4}','{5}'", action, mtxtCMND.Text, txtHoTen.Text, dtpNgaySinh.Text, txtDiaChi.Text, txtChucVu.Text);
+				string SqlString = String.Format("exec suaNV {0},'{1}',N'{2}','{3}',N'{4}',N'{5}'", action, mtxtCMND.Text, txtHoTen.Text, dtpNgaySinh.Text, txtDiaChi.Text, txtChucVu.Text);
 				connect(cbbChiNhanh.SelectedIndex + 1, SqlString);
 
 			}

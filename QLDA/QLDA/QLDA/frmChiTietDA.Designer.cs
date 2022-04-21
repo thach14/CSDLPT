@@ -200,6 +200,7 @@ namespace QLDA
             this.dgvPhanCong.Location = new System.Drawing.Point(4, 21);
             this.dgvPhanCong.Margin = new System.Windows.Forms.Padding(4);
             this.dgvPhanCong.Name = "dgvPhanCong";
+            this.dgvPhanCong.ReadOnly = true;
             this.dgvPhanCong.RowHeadersWidth = 51;
             this.dgvPhanCong.RowTemplate.Height = 24;
             this.dgvPhanCong.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

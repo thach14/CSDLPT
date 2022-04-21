@@ -15,9 +15,11 @@ namespace QLDA
 	public partial class frmPhanCong : Form
 	{
 		private string idDA;
-		public frmPhanCong(string idDA)
+		private int idCN;
+		public frmPhanCong(string idDA, int idCN)
 		{
 			this.idDA = idDA;
+			this.idCN = idCN;
 			InitializeComponent();
 		}
 		private void nhanVien(int CN)
@@ -65,5 +67,24 @@ namespace QLDA
 			vaiTro(WorkingContext.Instance.CurrentBranchID);
 			cbbVaiTro.Text = cbbVaiTro.Items[0].ToString();
 		}
+		private void phanCong(int CN)
+		{
+			string[] nv = cbbNhanVien.Text.Split(' ');
+			var connectionName = string.Format("CN{0}", CN);
+			var connectionString = ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
+			connectionString = string.Format(connectionString, "sa", "sa");
+			var connection = new SqlConnection();
+			connection.ConnectionString = connectionString;
+			var command = new SqlCommand(String.Format("exec themPC {0},{1},{2},'{3}'", idDA, nv[0], cbbVaiTro.SelectedIndex + 1, DateTime.Now.ToString("MM/dd/yyyy")), connection);
+			command.Connection = connection;
+			command.Connection.Open();
+			command.ExecuteNonQuery();
+			connection.Close();
+		}
+		private void btnPhanCong_Click(object sender, EventArgs e)
+        {
+			phanCong(idCN);
+			this.Dispose();
+        }
     }
 }

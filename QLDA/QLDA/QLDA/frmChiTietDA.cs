@@ -17,11 +17,11 @@ namespace QLDA
 		private string SqlString;
 		private DataTable dt;
 		private string idDA;
-		private int CN;
-		public frmChiTietDA(string idDA, int CN)
+		private int idCN;
+		public frmChiTietDA(string idDA, int idCN)
 		{
 			this.idDA = idDA;
-			this.CN=CN;
+			this.idCN = idCN;
 			InitializeComponent();
 		}
 		private void connect(int CN, string SqlString, DataGridView dgv)
@@ -65,18 +65,19 @@ namespace QLDA
 		}
 		private void tsmiPhanCong_Click(object sender, EventArgs e)
 		{
-			frmPhanCong frmPhanCong = new frmPhanCong(idDA);
+			frmPhanCong frmPhanCong = new frmPhanCong(idDA, idCN);
 			frmPhanCong.ShowDialog();
+			getPC();
 		}
 		private void getPC()
         {
 			SqlString = String.Format("exec pcda {0}",idDA);
-			connect(CN, SqlString, dgvPhanCong);
+			connect(idCN, SqlString, dgvPhanCong);
 		}
 		private void getDA()
         {
 			SqlString = String.Format("select da.*, cn.TenCN from DuAn da, ChiNhanh cn where da.ID = {0} and da.IDCN = cn.ID", idDA);
-			connect(CN, SqlString);
+			connect(idCN, SqlString);
 		}
         private void frmChiTietDA_Load(object sender, EventArgs e)
         {

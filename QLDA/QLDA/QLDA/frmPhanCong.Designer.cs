@@ -93,6 +93,7 @@ namespace QLDA
             this.btnPhanCong.TabIndex = 3;
             this.btnPhanCong.Text = "Tạo";
             this.btnPhanCong.UseVisualStyleBackColor = true;
+            this.btnPhanCong.Click += new System.EventHandler(this.btnPhanCong_Click);
             // 
             // frmPhanCong
             // 

@@ -65,8 +65,7 @@ namespace QLDA
 				try
 				{
 					var dbcontext = WorkingContext.Instance._dbContext;
-					var loginInfo = dbcontext.Database.SqlQuery<LoginInfo>("exec sp_GetLoginInfo @p0", login).FirstOrDefault();
-					
+					var loginInfo = dbcontext.Database.SqlQuery<LoginInfo>("exec sp_GetLoginInfo @p0", login).FirstOrDefault();				
 					WorkingContext.Instance.CurrentLoginInfo = loginInfo;
 					frmMain main = new frmMain();
 					main.ShowDialog();
