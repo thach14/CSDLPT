@@ -44,12 +44,13 @@ namespace QLDA
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvPhanCong = new System.Windows.Forms.DataGridView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tmsMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiPhanCong = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiKetToan = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhanCong)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
+            this.tmsMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -58,7 +59,7 @@ namespace QLDA
             this.label1.Location = new System.Drawing.Point(25, 94);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 17);
+            this.label1.Size = new System.Drawing.Size(99, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Chi nhánh:";
             // 
@@ -68,7 +69,7 @@ namespace QLDA
             this.label2.Location = new System.Drawing.Point(26, 51);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 17);
+            this.label2.Size = new System.Drawing.Size(98, 20);
             this.label2.TabIndex = 1;
             this.label2.Text = "Tên dự án:";
             // 
@@ -78,7 +79,7 @@ namespace QLDA
             this.label3.Location = new System.Drawing.Point(25, 138);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(110, 17);
+            this.label3.Size = new System.Drawing.Size(125, 20);
             this.label3.TabIndex = 2;
             this.label3.Text = "Ngày bắt đầu:";
             // 
@@ -89,7 +90,7 @@ namespace QLDA
             this.lblChiNhanh.Location = new System.Drawing.Point(196, 94);
             this.lblChiNhanh.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblChiNhanh.Name = "lblChiNhanh";
-            this.lblChiNhanh.Size = new System.Drawing.Size(46, 17);
+            this.lblChiNhanh.Size = new System.Drawing.Size(53, 20);
             this.lblChiNhanh.TabIndex = 3;
             this.lblChiNhanh.Text = "label4";
             // 
@@ -100,7 +101,7 @@ namespace QLDA
             this.lblTenDuAn.Location = new System.Drawing.Point(197, 51);
             this.lblTenDuAn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTenDuAn.Name = "lblTenDuAn";
-            this.lblTenDuAn.Size = new System.Drawing.Size(46, 17);
+            this.lblTenDuAn.Size = new System.Drawing.Size(53, 20);
             this.lblTenDuAn.TabIndex = 4;
             this.lblTenDuAn.Text = "label5";
             // 
@@ -111,7 +112,7 @@ namespace QLDA
             this.lblNgayBatDau.Location = new System.Drawing.Point(196, 138);
             this.lblNgayBatDau.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNgayBatDau.Name = "lblNgayBatDau";
-            this.lblNgayBatDau.Size = new System.Drawing.Size(46, 17);
+            this.lblNgayBatDau.Size = new System.Drawing.Size(53, 20);
             this.lblNgayBatDau.TabIndex = 5;
             this.lblNgayBatDau.Text = "label6";
             // 
@@ -121,7 +122,7 @@ namespace QLDA
             this.label4.Location = new System.Drawing.Point(508, 94);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 17);
+            this.label4.Size = new System.Drawing.Size(83, 20);
             this.label4.TabIndex = 6;
             this.label4.Text = "Kinh phí:";
             // 
@@ -132,7 +133,7 @@ namespace QLDA
             this.lblKinhPhi.Location = new System.Drawing.Point(625, 94);
             this.lblKinhPhi.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblKinhPhi.Name = "lblKinhPhi";
-            this.lblKinhPhi.Size = new System.Drawing.Size(46, 17);
+            this.lblKinhPhi.Size = new System.Drawing.Size(53, 20);
             this.lblKinhPhi.TabIndex = 7;
             this.lblKinhPhi.Text = "label7";
             // 
@@ -143,7 +144,7 @@ namespace QLDA
             this.lblThoiHan.Location = new System.Drawing.Point(625, 138);
             this.lblThoiHan.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblThoiHan.Name = "lblThoiHan";
-            this.lblThoiHan.Size = new System.Drawing.Size(46, 17);
+            this.lblThoiHan.Size = new System.Drawing.Size(53, 20);
             this.lblThoiHan.TabIndex = 9;
             this.lblThoiHan.Text = "label8";
             // 
@@ -153,7 +154,7 @@ namespace QLDA
             this.label5.Location = new System.Drawing.Point(508, 138);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 17);
+            this.label5.Size = new System.Drawing.Size(87, 20);
             this.label5.TabIndex = 8;
             this.label5.Text = "Thời hạn:";
             // 
@@ -197,37 +198,45 @@ namespace QLDA
             this.dgvPhanCong.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvPhanCong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPhanCong.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvPhanCong.Location = new System.Drawing.Point(4, 21);
+            this.dgvPhanCong.Location = new System.Drawing.Point(4, 26);
             this.dgvPhanCong.Margin = new System.Windows.Forms.Padding(4);
             this.dgvPhanCong.Name = "dgvPhanCong";
             this.dgvPhanCong.ReadOnly = true;
             this.dgvPhanCong.RowHeadersWidth = 51;
             this.dgvPhanCong.RowTemplate.Height = 24;
             this.dgvPhanCong.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPhanCong.Size = new System.Drawing.Size(964, 291);
+            this.dgvPhanCong.Size = new System.Drawing.Size(964, 286);
             this.dgvPhanCong.TabIndex = 0;
             // 
-            // contextMenuStrip1
+            // tmsMenu
             // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiPhanCong});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(214, 26);
+            this.tmsMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.tmsMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiPhanCong,
+            this.tsmiKetToan});
+            this.tmsMenu.Name = "contextMenuStrip1";
+            this.tmsMenu.Size = new System.Drawing.Size(250, 80);
             // 
             // tsmiPhanCong
             // 
             this.tsmiPhanCong.Name = "tsmiPhanCong";
-            this.tsmiPhanCong.Size = new System.Drawing.Size(213, 22);
+            this.tsmiPhanCong.Size = new System.Drawing.Size(249, 24);
             this.tsmiPhanCong.Text = "Chọn nhân viên vào dự án";
             this.tsmiPhanCong.Click += new System.EventHandler(this.tsmiPhanCong_Click);
             // 
+            // tsmiKetToan
+            // 
+            this.tsmiKetToan.Name = "tsmiKetToan";
+            this.tsmiKetToan.Size = new System.Drawing.Size(249, 24);
+            this.tsmiKetToan.Text = "Kết toán";
+            this.tsmiKetToan.Click += new System.EventHandler(this.tsmiKetToan_Click);
+            // 
             // frmChiTietDA
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1004, 574);
-            this.ContextMenuStrip = this.contextMenuStrip1;
+            this.ClientSize = new System.Drawing.Size(1002, 566);
+            this.ContextMenuStrip = this.tmsMenu;
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -245,7 +254,7 @@ namespace QLDA
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhanCong)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.tmsMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
@@ -265,7 +274,8 @@ namespace QLDA
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.DataGridView dgvPhanCong;
-		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+		private System.Windows.Forms.ContextMenuStrip tmsMenu;
 		private System.Windows.Forms.ToolStripMenuItem tsmiPhanCong;
-	}
+        private System.Windows.Forms.ToolStripMenuItem tsmiKetToan;
+    }
 }

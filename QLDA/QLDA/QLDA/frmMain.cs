@@ -16,6 +16,7 @@ namespace QLDA
 	{
 		private DataTable dt;
 		private int CN = WorkingContext.Instance.CurrentBranchID;
+		private string Role = WorkingContext.Instance.CurrentLoginInfo.RoleName;
 
 		public frmMain()
 		{
@@ -46,8 +47,9 @@ namespace QLDA
 		private void tsmiChiTietDA_Click(object sender, EventArgs e)
 		{
 			DataRow row = (dgvDuAn.SelectedRows[0].DataBoundItem as DataRowView).Row;
-			frmChiTietDA frmChiTietDA = new frmChiTietDA(row["ID"].ToString(),cbbChiNhanh.SelectedIndex);
+			frmChiTietDA frmChiTietDA = new frmChiTietDA(row["ID"].ToString(), Int32.Parse(row["IDCN"].ToString()));
 			frmChiTietDA.ShowDialog();
+			getLuong();
 		}
 
 		private void tsmiCreateAcc_Click(object sender, EventArgs e)
@@ -58,9 +60,24 @@ namespace QLDA
 
 		private void frmMain_Load(object sender, EventArgs e)
 		{
-			cbbChiNhanh.Text = cbbChiNhanh.Items[WorkingContext.Instance.CurrentBranchID].ToString();
-			if (WorkingContext.Instance.CurrentLoginInfo.RoleName != "ChuTich")
+			cbbChiNhanh.Text = cbbChiNhanh.Items[CN].ToString();
+			if (Role == "ChuTich")
+			{
+				tpNhanVien.ContextMenuStrip = null;
+				tpDuAn.ContextMenuStrip.Items.Remove(tsmiSuaDA);
+				tpDuAn.ContextMenuStrip.Items.Remove(tsmiKetThucDA);
+			}
+			else if( Role == "QuanLyCN")
+            {
 				cbbChiNhanh.Enabled = false;
+            }
+            else
+            {
+				cbbChiNhanh.Enabled = false;
+				tsmiCreateAcc.Enabled = false;
+				tpNhanVien.ContextMenuStrip = null;
+				tpDuAn.ContextMenuStrip = null;
+			}
 			tsslChiNhanh.Text += WorkingContext.Instance.CurrentBranch;
 			tsslUser.Text += WorkingContext.Instance.CurrentLoginName;
 			tsslRole.Text += WorkingContext.Instance.CurrentLoginInfo.RoleName;
@@ -68,7 +85,7 @@ namespace QLDA
 			getDA();
 			getLuong();
 		}
-		private void connect(int CN, string SqlString, DataGridView dgv)
+		private void connect(string SqlString, DataGridView dgv)
 		{
 			dt = new DataTable();
 			var connectionName = string.Format("CN{0}", CN);
@@ -84,7 +101,7 @@ namespace QLDA
 			dgv.DataSource = dt;
 			connection.Close();
 		}
-		private void connect(int CN, string SqlString)
+		private void connect(string SqlString)
 		{
 			var connectionName = string.Format("CN{0}", CN);
 			var connectionString = ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
@@ -103,17 +120,17 @@ namespace QLDA
 			if (cbbChiNhanh.SelectedIndex == 0)
 			{
 				SqlString = "exec dsNVCT";
-				connect(CN, SqlString, dgvNhanVien);
+				connect(SqlString, dgvNhanVien);
 			}
 			else if (cbbChiNhanh.SelectedIndex == CN)
 			{
 				SqlString = "exec dsNVCN";
-				connect(CN, SqlString, dgvNhanVien);
+				connect(SqlString, dgvNhanVien);
 			}
 			else
 			{
-				SqlString = "exec dsNVCN";
-				connect(cbbChiNhanh.SelectedIndex, SqlString, dgvNhanVien);
+				SqlString = "exec LINK.QLDA.[dbo].dsNVCN";
+				connect(SqlString, dgvNhanVien);
 			}
 		}
 		private void getDA()
@@ -122,17 +139,17 @@ namespace QLDA
 			if (cbbChiNhanh.SelectedIndex == 0)
 			{
 				SqlString = "exec dsDACT";
-				connect(CN, SqlString, dgvDuAn);
+				connect(SqlString, dgvDuAn);
 			}
 			else if (cbbChiNhanh.SelectedIndex == CN)
 			{
 				SqlString = "exec dsDACN";
-				connect(CN, SqlString, dgvDuAn);
+				connect(SqlString, dgvDuAn);
 			}
 			else
 			{
-				SqlString = "exec dsDACN";
-				connect(cbbChiNhanh.SelectedIndex, SqlString, dgvDuAn);
+				SqlString = "exec LINK.QLDA.[dbo].dsDACN";
+				connect(SqlString, dgvDuAn);
 			}
 		}
 		private void getLuong()
@@ -141,17 +158,17 @@ namespace QLDA
 			if (cbbChiNhanh.SelectedIndex == 0)
 			{
 				SqlString = "exec luongCT";
-				connect(CN, SqlString, dgvLuong);
+				connect(SqlString, dgvLuong);
 			}
 			else if (cbbChiNhanh.SelectedIndex == CN)
 			{
 				SqlString = "exec luongCN";
-				connect(CN, SqlString, dgvLuong);
+				connect(SqlString, dgvLuong);
 			}
 			else
 			{
-				SqlString = "exec luongCN";
-				connect(cbbChiNhanh.SelectedIndex, SqlString, dgvLuong);
+				SqlString = "exec LINK.QLDA.[dbo].luongCN";
+				connect(SqlString, dgvLuong);
 			}
 		}
 
@@ -174,7 +191,7 @@ namespace QLDA
         {
 			DataRow row = (dgvNhanVien.SelectedRows[0].DataBoundItem as DataRowView).Row;
 			string sql = String.Format("exec statusNV {0}, 0",row["ID"].ToString());
-			connect(cbbChiNhanh.SelectedIndex, sql);
+			connect(sql);
 			getNV();
 		}
 
@@ -190,7 +207,7 @@ namespace QLDA
         {
 			DataRow row = (dgvDuAn.SelectedRows[0].DataBoundItem as DataRowView).Row;
 			string sql = String.Format("exec statusDA {0}, 1",row["ID"].ToString());
-			connect(cbbChiNhanh.SelectedIndex, sql);
+			connect(sql);
 			getDA();
         }
 		private void getLuongThang()
@@ -199,17 +216,17 @@ namespace QLDA
 			if (cbbChiNhanh.SelectedIndex == 0)
 			{
 				SqlString = String.Format("exec luongThangCT '{0}', '{1}'", dtpFrom.Text, dtpTo.Text);
-				connect(CN, SqlString, dgvLuong);
+				connect(SqlString, dgvLuong);
 			}
 			else if (cbbChiNhanh.SelectedIndex == CN)
 			{
 				SqlString = String.Format("exec luongThangCN '{0}', '{1}'", dtpFrom.Text, dtpTo.Text); ;
-				connect(CN, SqlString, dgvLuong);
+				connect(SqlString, dgvLuong);
 			}
 			else
 			{
-				SqlString = String.Format("exec luongThangCN '{0}', '{1}'", dtpFrom.Text, dtpTo.Text); ;
-				connect(cbbChiNhanh.SelectedIndex, SqlString, dgvLuong);
+				SqlString = String.Format("exec LINK.QLDA.[dbo].luongThangCN '{0}', '{1}'", dtpFrom.Text, dtpTo.Text); ;
+				connect(SqlString, dgvLuong);
 			}
 		}
 
@@ -233,6 +250,13 @@ namespace QLDA
         private void btnLoc_Click(object sender, EventArgs e)
         {
 			getLuongThang();
+        }
+
+        private void tsmiLogOut_Click(object sender, EventArgs e)
+        {
+			this.Dispose();
+			frmDangNhap frmDangNhap = new frmDangNhap();
+			frmDangNhap.ShowDialog();
         }
     }
 }

@@ -15,12 +15,13 @@ namespace QLDA
 	public partial class frmNhanVien : Form
 	{
 		private string action;
+		private int CN = WorkingContext.Instance.CurrentBranchID;
 		public frmNhanVien(string action)
 		{
 			InitializeComponent();
 			this.action = action;
 		}
-		private void connect(int CN, string SqlString)
+		private void connect(string SqlString)
 		{
 			var connectionName = string.Format("CN{0}", CN);
 			var connectionString = ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
@@ -37,23 +38,20 @@ namespace QLDA
         {
 			if (action == "Add")
 			{
-				string SqlString = String.Format("exec themNV {0},'{1}',N'{2}','{3}',N'{4}',N'{5}'", cbbChiNhanh.SelectedIndex + 1, mtxtCMND.Text, txtHoTen.Text, dtpNgaySinh.Text, txtDiaChi.Text, txtChucVu.Text);
-				connect(cbbChiNhanh.SelectedIndex + 1, SqlString);
+				string SqlString = String.Format("exec themNV {0},'{1}',N'{2}','{3}',N'{4}',N'{5}'", CN, mtxtCMND.Text, txtHoTen.Text, dtpNgaySinh.Text, txtDiaChi.Text, txtChucVu.Text);
+				connect(SqlString);
 			}
 			else
             {
 				string SqlString = String.Format("exec suaNV {0},'{1}',N'{2}','{3}',N'{4}',N'{5}'", action, mtxtCMND.Text, txtHoTen.Text, dtpNgaySinh.Text, txtDiaChi.Text, txtChucVu.Text);
-				connect(cbbChiNhanh.SelectedIndex + 1, SqlString);
-
+				connect(SqlString);
 			}
 			this.Dispose();
 		}
 
         private void frmNhanVien_Load(object sender, EventArgs e)
         {
-            if(WorkingContext.Instance.CurrentLoginInfo.RoleName == "ChuTich" && action =="Add")
-                cbbChiNhanh.Enabled = true;
-            cbbChiNhanh.Text = WorkingContext.Instance.CurrentBranch;
+            cbbChiNhanh.SelectedIndex=CN-1;
         }
     }
 }

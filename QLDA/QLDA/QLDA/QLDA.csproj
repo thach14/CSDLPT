@@ -82,6 +82,12 @@
     <Compile Include="frmDuAn.Designer.cs">
       <DependentUpon>frmDuAn.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmKetToan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKetToan.Designer.cs">
+      <DependentUpon>frmKetToan.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDuAn.resx">
       <DependentUpon>frmDuAn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKetToan.resx">
+      <DependentUpon>frmKetToan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

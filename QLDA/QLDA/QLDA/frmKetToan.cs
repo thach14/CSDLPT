@@ -12,16 +12,16 @@ using System.Windows.Forms;
 
 namespace QLDA
 {
-	public partial class frmDuAn : Form
-	{
-		private string action;
+    public partial class frmKetToan : Form
+    {
+        private string idPC;
 		private int CN = WorkingContext.Instance.CurrentBranchID;
-		public frmDuAn(string action)
-		{
-			this.action = action;
-			InitializeComponent();
-		}
-		private void connect(string SqlString)
+        public frmKetToan(string idPC)
+        {
+            InitializeComponent();
+            this.idPC = idPC;
+        }
+		private void ketToan(string SqlString)
 		{
 			var connectionName = string.Format("CN{0}", CN);
 			var connectionString = ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
@@ -34,25 +34,12 @@ namespace QLDA
 			command.ExecuteNonQuery();
 			connection.Close();
 		}
-		private void frmDuAn_Load(object sender, EventArgs e)
-        {
-			cbbChiNhanh.SelectedIndex = CN - 1;
-		}
 
-        private void btnLuu_Click(object sender, EventArgs e)
+        private void btnOK_Click(object sender, EventArgs e)
         {
-			if (action == "Add")
-			{
-				string SqlString = String.Format("exec themDA {0},N'{1}','{2}','{3}','{4}'", CN, txtTenDA.Text, dtpNgayBD.Text, mtbPhi.Text, mtpThoiHan.Text);
-				connect(SqlString);
-			}
-			else
-			{
-				string SqlString = String.Format("exec suaDA {0},N'{1}','{2}','{3}','{4}'", action, txtTenDA.Text, dtpNgayBD.Text, mtbPhi.Text, mtpThoiHan.Text);
-				connect(SqlString);
-
-			}
+			string sql = String.Format("exec themTL {0}, '{1}', {2}", idPC, dtpNgayKT.Text, mudSoGio.Value);
+			ketToan(sql);
 			this.Dispose();
-		}
+        }
     }
 }

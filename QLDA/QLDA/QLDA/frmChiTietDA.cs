@@ -14,17 +14,17 @@ namespace QLDA
 {
 	public partial class frmChiTietDA : Form
 	{
-		private string SqlString;
+		private string SqlString, Role = WorkingContext.Instance.CurrentLoginInfo.RoleName;
 		private DataTable dt;
 		private string idDA;
-		private int idCN;
+		private int CN= WorkingContext.Instance.CurrentBranchID, idCN;
 		public frmChiTietDA(string idDA, int idCN)
 		{
 			this.idDA = idDA;
 			this.idCN = idCN;
 			InitializeComponent();
 		}
-		private void connect(int CN, string SqlString, DataGridView dgv)
+		private void connect(string SqlString, DataGridView dgv)
 		{
 			dt = new DataTable();
 			var connectionName = string.Format("CN{0}", CN);
@@ -40,7 +40,7 @@ namespace QLDA
 			dgv.DataSource = dt;
 			connection.Close();
 		}
-		private void connect(int CN, string SqlString)
+		private void connect(string SqlString)
 		{
 			var connectionName = string.Format("CN{0}", CN);
 			var connectionString = ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
@@ -65,24 +65,50 @@ namespace QLDA
 		}
 		private void tsmiPhanCong_Click(object sender, EventArgs e)
 		{
-			frmPhanCong frmPhanCong = new frmPhanCong(idDA, idCN);
+			frmPhanCong frmPhanCong = new frmPhanCong(idDA);
 			frmPhanCong.ShowDialog();
 			getPC();
 		}
 		private void getPC()
         {
-			SqlString = String.Format("exec pcda {0}",idDA);
-			connect(idCN, SqlString, dgvPhanCong);
+			if (CN == idCN)
+			{
+				SqlString = String.Format("exec pcda {0}", idDA);
+				connect(SqlString, dgvPhanCong);
+			}
+			else
+            {
+				SqlString = String.Format("exec LINK.QLDA.[dbo].pcda {0}", idDA);
+				connect(SqlString, dgvPhanCong);
+			}
 		}
-		private void getDA()
+
+        private void tsmiKetToan_Click(object sender, EventArgs e)
         {
-			SqlString = String.Format("select da.*, cn.TenCN from DuAn da, ChiNhanh cn where da.ID = {0} and da.IDCN = cn.ID", idDA);
-			connect(idCN, SqlString);
+			DataRow row = (dgvPhanCong.SelectedRows[0].DataBoundItem as DataRowView).Row;
+			frmKetToan ketToan = new frmKetToan(row["ID"].ToString());
+			ketToan.ShowDialog();
+        }
+
+        private void getDA()
+        {
+			if (CN == idCN)
+            {
+				SqlString = String.Format("select da.*, cn.TenCN from DuAn da, ChiNhanh cn where da.ID = {0} and da.IDCN = cn.ID", idDA);
+				connect(SqlString);
+			}
+			else
+            {
+				SqlString = String.Format("select da.*, cn.TenCN from LINK.QLDA.[dbo].DuAn da, LINK.QLDA.[dbo].ChiNhanh cn where da.ID = {0} and da.IDCN = cn.ID", idDA);
+				connect(SqlString);
+			}
 		}
         private void frmChiTietDA_Load(object sender, EventArgs e)
         {
 			getDA();
 			getPC();
+			if(Role == "ChuTich")
+				tmsMenu.Items.Clear();
         }
     }
 }
