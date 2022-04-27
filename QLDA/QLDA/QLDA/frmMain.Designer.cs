@@ -36,7 +36,7 @@ namespace QLDA
             this.tsslChiNhanh = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslRole = new System.Windows.Forms.ToolStripStatusLabel();
             this.cmsNhanVien = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiChuyenCN = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDATG = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSuaNV = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiXoaNV = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsDuAn = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -53,22 +53,22 @@ namespace QLDA
             this.cbbChiNhanh = new System.Windows.Forms.ComboBox();
             this.tpThongKe = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dgvLuong = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dtpFrom = new System.Windows.Forms.DateTimePicker();
-            this.dtpTo = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnLoc = new System.Windows.Forms.Button();
             this.cbLoc = new System.Windows.Forms.CheckBox();
+            this.dtpTime = new System.Windows.Forms.DateTimePicker();
+            this.dgvLuong = new System.Windows.Forms.DataGridView();
             this.tpDuAn = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dgvDuAn = new System.Windows.Forms.DataGridView();
             this.btnThemDA = new System.Windows.Forms.Button();
+            this.dgvDuAn = new System.Windows.Forms.DataGridView();
             this.tpNhanVien = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dgvNhanVien = new System.Windows.Forms.DataGridView();
             this.btnThemNV = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.dgvNhanVien = new System.Windows.Forms.DataGridView();
+            this.tcMenu = new System.Windows.Forms.TabControl();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.dgvMostDA = new System.Windows.Forms.DataGridView();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.dgvMostNV = new System.Windows.Forms.DataGridView();
             this.statusStrip1.SuspendLayout();
             this.cmsNhanVien.SuspendLayout();
             this.cmsDuAn.SuspendLayout();
@@ -82,7 +82,11 @@ namespace QLDA
             this.tpNhanVien.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNhanVien)).BeginInit();
-            this.tabControl1.SuspendLayout();
+            this.tcMenu.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMostDA)).BeginInit();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMostNV)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -121,29 +125,30 @@ namespace QLDA
             // 
             this.cmsNhanVien.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsNhanVien.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiChuyenCN,
+            this.tsmiDATG,
             this.tsmiSuaNV,
             this.tsmiXoaNV});
             this.cmsNhanVien.Name = "cmsNhanVien";
-            this.cmsNhanVien.Size = new System.Drawing.Size(199, 76);
+            this.cmsNhanVien.Size = new System.Drawing.Size(182, 76);
             // 
-            // tsmiChuyenCN
+            // tsmiDATG
             // 
-            this.tsmiChuyenCN.Name = "tsmiChuyenCN";
-            this.tsmiChuyenCN.Size = new System.Drawing.Size(198, 24);
-            this.tsmiChuyenCN.Text = "Chuyển Chi Nhánh";
+            this.tsmiDATG.Name = "tsmiDATG";
+            this.tsmiDATG.Size = new System.Drawing.Size(181, 24);
+            this.tsmiDATG.Text = "Dự án tham gia";
+            this.tsmiDATG.Click += new System.EventHandler(this.tsmiDATG_Click);
             // 
             // tsmiSuaNV
             // 
             this.tsmiSuaNV.Name = "tsmiSuaNV";
-            this.tsmiSuaNV.Size = new System.Drawing.Size(198, 24);
+            this.tsmiSuaNV.Size = new System.Drawing.Size(181, 24);
             this.tsmiSuaNV.Text = "Sửa Thông Tin";
             this.tsmiSuaNV.Click += new System.EventHandler(this.tsmiSuaNV_Click);
             // 
             // tsmiXoaNV
             // 
             this.tsmiXoaNV.Name = "tsmiXoaNV";
-            this.tsmiXoaNV.Size = new System.Drawing.Size(198, 24);
+            this.tsmiXoaNV.Size = new System.Drawing.Size(181, 24);
             this.tsmiXoaNV.Text = "Xoá Nhân Viên";
             this.tsmiXoaNV.Click += new System.EventHandler(this.tsmiXoaNV_Click);
             // 
@@ -222,14 +227,14 @@ namespace QLDA
             // 
             this.tsmiCreateAcc.Image = ((System.Drawing.Image)(resources.GetObject("tsmiCreateAcc.Image")));
             this.tsmiCreateAcc.Name = "tsmiCreateAcc";
-            this.tsmiCreateAcc.Size = new System.Drawing.Size(145, 26);
+            this.tsmiCreateAcc.Size = new System.Drawing.Size(224, 26);
             this.tsmiCreateAcc.Text = "Create";
             this.tsmiCreateAcc.Click += new System.EventHandler(this.tsmiCreateAcc_Click);
             // 
             // tsmiLogOut
             // 
             this.tsmiLogOut.Name = "tsmiLogOut";
-            this.tsmiLogOut.Size = new System.Drawing.Size(145, 26);
+            this.tsmiLogOut.Size = new System.Drawing.Size(224, 26);
             this.tsmiLogOut.Text = "Log Out";
             this.tsmiLogOut.Click += new System.EventHandler(this.tsmiLogOut_Click);
             // 
@@ -264,6 +269,8 @@ namespace QLDA
             // tpThongKe
             // 
             this.tpThongKe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.tpThongKe.Controls.Add(this.groupBox5);
+            this.tpThongKe.Controls.Add(this.groupBox4);
             this.tpThongKe.Controls.Add(this.groupBox3);
             this.tpThongKe.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tpThongKe.Location = new System.Drawing.Point(4, 29);
@@ -278,19 +285,41 @@ namespace QLDA
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.cbLoc);
-            this.groupBox3.Controls.Add(this.btnLoc);
-            this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Controls.Add(this.dtpTo);
-            this.groupBox3.Controls.Add(this.dtpFrom);
-            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Controls.Add(this.dtpTime);
             this.groupBox3.Controls.Add(this.dgvLuong);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(7, 10);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(778, 596);
+            this.groupBox3.Size = new System.Drawing.Size(670, 596);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Lương";
+            // 
+            // cbLoc
+            // 
+            this.cbLoc.AutoSize = true;
+            this.cbLoc.Checked = true;
+            this.cbLoc.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbLoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbLoc.Location = new System.Drawing.Point(416, 15);
+            this.cbLoc.Name = "cbLoc";
+            this.cbLoc.Size = new System.Drawing.Size(131, 29);
+            this.cbLoc.TabIndex = 9;
+            this.cbLoc.Text = "Thời gian:";
+            this.cbLoc.UseVisualStyleBackColor = true;
+            this.cbLoc.CheckedChanged += new System.EventHandler(this.cbLoc_CheckedChanged);
+            // 
+            // dtpTime
+            // 
+            this.dtpTime.CustomFormat = "MM/yyyy";
+            this.dtpTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTime.Location = new System.Drawing.Point(539, 14);
+            this.dtpTime.Name = "dtpTime";
+            this.dtpTime.ShowUpDown = true;
+            this.dtpTime.Size = new System.Drawing.Size(123, 30);
+            this.dtpTime.TabIndex = 5;
+            this.dtpTime.Value = new System.DateTime(2022, 4, 13, 0, 0, 0, 0);
+            this.dtpTime.ValueChanged += new System.EventHandler(this.dtpTime_ValueChanged);
             // 
             // dgvLuong
             // 
@@ -299,77 +328,14 @@ namespace QLDA
             this.dgvLuong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLuong.Location = new System.Drawing.Point(3, 51);
             this.dgvLuong.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvLuong.MultiSelect = false;
             this.dgvLuong.Name = "dgvLuong";
             this.dgvLuong.ReadOnly = true;
             this.dgvLuong.RowHeadersWidth = 51;
             this.dgvLuong.RowTemplate.Height = 24;
-            this.dgvLuong.Size = new System.Drawing.Size(768, 542);
+            this.dgvLuong.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvLuong.Size = new System.Drawing.Size(660, 542);
             this.dgvLuong.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(374, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 25);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "From";
-            // 
-            // dtpFrom
-            // 
-            this.dtpFrom.CustomFormat = "MM/dd/yyyy";
-            this.dtpFrom.Enabled = false;
-            this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFrom.Location = new System.Drawing.Point(430, 18);
-            this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(123, 30);
-            this.dtpFrom.TabIndex = 5;
-            this.dtpFrom.Value = new System.DateTime(2022, 4, 13, 0, 0, 0, 0);
-            // 
-            // dtpTo
-            // 
-            this.dtpTo.CustomFormat = "MM/dd/yyyy";
-            this.dtpTo.Enabled = false;
-            this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTo.Location = new System.Drawing.Point(603, 18);
-            this.dtpTo.Name = "dtpTo";
-            this.dtpTo.Size = new System.Drawing.Size(123, 30);
-            this.dtpTo.TabIndex = 6;
-            this.dtpTo.Value = new System.DateTime(2022, 4, 13, 0, 0, 0, 0);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(564, 21);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 25);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "To";
-            // 
-            // btnLoc
-            // 
-            this.btnLoc.Enabled = false;
-            this.btnLoc.Location = new System.Drawing.Point(732, 20);
-            this.btnLoc.Name = "btnLoc";
-            this.btnLoc.Size = new System.Drawing.Size(38, 23);
-            this.btnLoc.TabIndex = 8;
-            this.btnLoc.Text = "Lọc";
-            this.btnLoc.UseVisualStyleBackColor = true;
-            this.btnLoc.Click += new System.EventHandler(this.btnLoc_Click);
-            // 
-            // cbLoc
-            // 
-            this.cbLoc.AutoSize = true;
-            this.cbLoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbLoc.Location = new System.Drawing.Point(271, 19);
-            this.cbLoc.Name = "cbLoc";
-            this.cbLoc.Size = new System.Drawing.Size(131, 29);
-            this.cbLoc.TabIndex = 9;
-            this.cbLoc.Text = "Thời gian:";
-            this.cbLoc.UseVisualStyleBackColor = true;
-            this.cbLoc.CheckedChanged += new System.EventHandler(this.cbLoc_CheckedChanged);
             // 
             // tpDuAn
             // 
@@ -401,6 +367,19 @@ namespace QLDA
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách dự án";
             // 
+            // btnThemDA
+            // 
+            this.btnThemDA.BackColor = System.Drawing.Color.White;
+            this.btnThemDA.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnThemDA.Image = ((System.Drawing.Image)(resources.GetObject("btnThemDA.Image")));
+            this.btnThemDA.Location = new System.Drawing.Point(1176, 508);
+            this.btnThemDA.Margin = new System.Windows.Forms.Padding(4);
+            this.btnThemDA.Name = "btnThemDA";
+            this.btnThemDA.Size = new System.Drawing.Size(62, 62);
+            this.btnThemDA.TabIndex = 10;
+            this.btnThemDA.UseVisualStyleBackColor = false;
+            this.btnThemDA.Click += new System.EventHandler(this.btnThemDA_Click);
+            // 
             // dgvDuAn
             // 
             this.dgvDuAn.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -417,19 +396,6 @@ namespace QLDA
             this.dgvDuAn.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDuAn.Size = new System.Drawing.Size(1238, 547);
             this.dgvDuAn.TabIndex = 8;
-            // 
-            // btnThemDA
-            // 
-            this.btnThemDA.BackColor = System.Drawing.Color.White;
-            this.btnThemDA.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnThemDA.Image = ((System.Drawing.Image)(resources.GetObject("btnThemDA.Image")));
-            this.btnThemDA.Location = new System.Drawing.Point(1176, 508);
-            this.btnThemDA.Margin = new System.Windows.Forms.Padding(4);
-            this.btnThemDA.Name = "btnThemDA";
-            this.btnThemDA.Size = new System.Drawing.Size(62, 62);
-            this.btnThemDA.TabIndex = 10;
-            this.btnThemDA.UseVisualStyleBackColor = false;
-            this.btnThemDA.Click += new System.EventHandler(this.btnThemDA_Click);
             // 
             // tpNhanVien
             // 
@@ -461,6 +427,19 @@ namespace QLDA
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Danh sách nhân viên";
             // 
+            // btnThemNV
+            // 
+            this.btnThemNV.BackColor = System.Drawing.Color.White;
+            this.btnThemNV.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnThemNV.Image = ((System.Drawing.Image)(resources.GetObject("btnThemNV.Image")));
+            this.btnThemNV.Location = new System.Drawing.Point(1176, 508);
+            this.btnThemNV.Margin = new System.Windows.Forms.Padding(4);
+            this.btnThemNV.Name = "btnThemNV";
+            this.btnThemNV.Size = new System.Drawing.Size(62, 62);
+            this.btnThemNV.TabIndex = 10;
+            this.btnThemNV.UseVisualStyleBackColor = false;
+            this.btnThemNV.Click += new System.EventHandler(this.btnThemNV_Click);
+            // 
             // dgvNhanVien
             // 
             this.dgvNhanVien.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -478,31 +457,74 @@ namespace QLDA
             this.dgvNhanVien.Size = new System.Drawing.Size(1238, 547);
             this.dgvNhanVien.TabIndex = 8;
             // 
-            // btnThemNV
+            // tcMenu
             // 
-            this.btnThemNV.BackColor = System.Drawing.Color.White;
-            this.btnThemNV.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnThemNV.Image = ((System.Drawing.Image)(resources.GetObject("btnThemNV.Image")));
-            this.btnThemNV.Location = new System.Drawing.Point(1176, 508);
-            this.btnThemNV.Margin = new System.Windows.Forms.Padding(4);
-            this.btnThemNV.Name = "btnThemNV";
-            this.btnThemNV.Size = new System.Drawing.Size(62, 62);
-            this.btnThemNV.TabIndex = 10;
-            this.btnThemNV.UseVisualStyleBackColor = false;
-            this.btnThemNV.Click += new System.EventHandler(this.btnThemNV_Click);
+            this.tcMenu.Controls.Add(this.tpNhanVien);
+            this.tcMenu.Controls.Add(this.tpDuAn);
+            this.tcMenu.Controls.Add(this.tpThongKe);
+            this.tcMenu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tcMenu.Location = new System.Drawing.Point(0, 28);
+            this.tcMenu.Margin = new System.Windows.Forms.Padding(4);
+            this.tcMenu.Name = "tcMenu";
+            this.tcMenu.SelectedIndex = 0;
+            this.tcMenu.Size = new System.Drawing.Size(1262, 619);
+            this.tcMenu.TabIndex = 1;
             // 
-            // tabControl1
+            // groupBox4
             // 
-            this.tabControl1.Controls.Add(this.tpNhanVien);
-            this.tabControl1.Controls.Add(this.tpDuAn);
-            this.tabControl1.Controls.Add(this.tpThongKe);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 28);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1262, 619);
-            this.tabControl1.TabIndex = 1;
+            this.groupBox4.Controls.Add(this.dgvMostDA);
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.Location = new System.Drawing.Point(683, 10);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(563, 280);
+            this.groupBox4.TabIndex = 3;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Nhân viên tham gia nhiều dự án nhất";
+            // 
+            // dgvMostDA
+            // 
+            this.dgvMostDA.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMostDA.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvMostDA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMostDA.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvMostDA.Location = new System.Drawing.Point(3, 26);
+            this.dgvMostDA.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvMostDA.MultiSelect = false;
+            this.dgvMostDA.Name = "dgvMostDA";
+            this.dgvMostDA.ReadOnly = true;
+            this.dgvMostDA.RowHeadersWidth = 51;
+            this.dgvMostDA.RowTemplate.Height = 24;
+            this.dgvMostDA.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvMostDA.Size = new System.Drawing.Size(557, 251);
+            this.dgvMostDA.TabIndex = 2;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.dgvMostNV);
+            this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox5.Location = new System.Drawing.Point(683, 294);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(563, 309);
+            this.groupBox5.TabIndex = 4;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Dự án có nhiều nhân viên tham gia nhất";
+            // 
+            // dgvMostNV
+            // 
+            this.dgvMostNV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMostNV.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvMostNV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMostNV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvMostNV.Location = new System.Drawing.Point(3, 26);
+            this.dgvMostNV.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvMostNV.MultiSelect = false;
+            this.dgvMostNV.Name = "dgvMostNV";
+            this.dgvMostNV.ReadOnly = true;
+            this.dgvMostNV.RowHeadersWidth = 51;
+            this.dgvMostNV.RowTemplate.Height = 24;
+            this.dgvMostNV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvMostNV.Size = new System.Drawing.Size(557, 280);
+            this.dgvMostNV.TabIndex = 2;
             // 
             // frmMain
             // 
@@ -511,7 +533,7 @@ namespace QLDA
             this.ClientSize = new System.Drawing.Size(1262, 673);
             this.Controls.Add(this.cbbChiNhanh);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tcMenu);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -541,7 +563,11 @@ namespace QLDA
             this.tpNhanVien.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvNhanVien)).EndInit();
-            this.tabControl1.ResumeLayout(false);
+            this.tcMenu.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMostDA)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMostNV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -558,7 +584,7 @@ namespace QLDA
 		private System.Windows.Forms.ContextMenuStrip cmsNhanVien;
 		private System.Windows.Forms.ToolStripMenuItem tsmiSuaNV;
 		private System.Windows.Forms.ToolStripMenuItem tsmiXoaNV;
-		private System.Windows.Forms.ToolStripMenuItem tsmiChuyenCN;
+		private System.Windows.Forms.ToolStripMenuItem tsmiDATG;
 		private System.Windows.Forms.ContextMenuStrip cmsDuAn;
 		private System.Windows.Forms.ToolStripMenuItem tsmiChiTietDA;
 		private System.Windows.Forms.ToolStripMenuItem tsmiSuaDA;
@@ -572,11 +598,7 @@ namespace QLDA
         private System.Windows.Forms.TabPage tpThongKe;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox cbLoc;
-        private System.Windows.Forms.Button btnLoc;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dtpTo;
-        private System.Windows.Forms.DateTimePicker dtpFrom;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker dtpTime;
         private System.Windows.Forms.DataGridView dgvLuong;
         private System.Windows.Forms.TabPage tpDuAn;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -586,6 +608,10 @@ namespace QLDA
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnThemNV;
         private System.Windows.Forms.DataGridView dgvNhanVien;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tcMenu;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.DataGridView dgvMostDA;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.DataGridView dgvMostNV;
     }
 }

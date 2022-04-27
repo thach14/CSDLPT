@@ -107,7 +107,7 @@ namespace QLDA
         {
 			getDA();
 			getPC();
-			if(Role == "ChuTich")
+			if(Role == "ChuTich" || Role == "NhanVien")
 				tmsMenu.Items.Clear();
         }
     }

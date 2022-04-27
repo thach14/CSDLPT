@@ -43,3 +43,4 @@ E:\CSDLPT\QLDA\QLDA\QLDA\bin\Debug\EntityFramework.SqlServer.xml
 E:\CSDLPT\QLDA\QLDA\QLDA\obj\Debug\QLDA.csproj.SuggestedBindingRedirects.cache
 E:\CSDLPT\QLDA\QLDA\QLDA\obj\Debug\QLDA.csproj.CopyComplete
 E:\CSDLPT\QLDA\QLDA\QLDA\obj\Debug\QLDA.frmKetToan.resources
+E:\CSDLPT\QLDA\QLDA\QLDA\obj\Debug\QLDA.frmDATG.resources

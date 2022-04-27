@@ -63,27 +63,43 @@ namespace QLDA
 			cbbChiNhanh.Text = cbbChiNhanh.Items[CN].ToString();
 			if (Role == "ChuTich")
 			{
-				tpNhanVien.ContextMenuStrip = null;
+				tpNhanVien.ContextMenuStrip.Items.Remove(tsmiSuaNV);
+				tpNhanVien.ContextMenuStrip.Items.Remove(tsmiXoaNV);
 				tpDuAn.ContextMenuStrip.Items.Remove(tsmiSuaDA);
 				tpDuAn.ContextMenuStrip.Items.Remove(tsmiKetThucDA);
+				btnThemDA.Enabled = false;
+				btnThemNV.Enabled = false;
+				getNV();
+				getDA();
+				getLuong();
+				getMostDA();
+				getMostNV();
 			}
 			else if( Role == "QuanLyCN")
             {
 				cbbChiNhanh.Enabled = false;
-            }
+				getNV();
+				getDA();
+				getLuong();
+				getMostDA();
+				getMostNV();
+			}
             else
             {
 				cbbChiNhanh.Enabled = false;
 				tsmiCreateAcc.Enabled = false;
+				tcMenu.TabPages.Remove(tpThongKe);
 				tpNhanVien.ContextMenuStrip = null;
-				tpDuAn.ContextMenuStrip = null;
+				tpDuAn.ContextMenuStrip.Items.Remove(tsmiSuaDA);
+				tpDuAn.ContextMenuStrip.Items.Remove(tsmiKetThucDA);
+				btnThemDA.Enabled = false;
+				btnThemNV.Enabled = false;
+				getNV();
+				getDA();
 			}
 			tsslChiNhanh.Text += WorkingContext.Instance.CurrentBranch;
 			tsslUser.Text += WorkingContext.Instance.CurrentLoginName;
 			tsslRole.Text += WorkingContext.Instance.CurrentLoginInfo.RoleName;
-			getNV();
-			getDA();
-			getLuong();
 		}
 		private void connect(string SqlString, DataGridView dgv)
 		{
@@ -171,12 +187,52 @@ namespace QLDA
 				connect(SqlString, dgvLuong);
 			}
 		}
+		private void getMostDA()
+        {
+			string SqlString;
+			if (cbbChiNhanh.SelectedIndex == 0)
+			{
+				SqlString = "exec mostDACT";
+				connect(SqlString, dgvMostDA);
+			}
+			else if (cbbChiNhanh.SelectedIndex == CN)
+			{
+				SqlString = "exec mostDACN";
+				connect(SqlString, dgvMostDA);
+			}
+			else
+			{
+				SqlString = "exec LINK.QLDA.[dbo].mostDACN";
+				connect(SqlString, dgvMostDA);
+			}
+		}
+		private void getMostNV()
+		{
+			string SqlString;
+			if (cbbChiNhanh.SelectedIndex == 0)
+			{
+				SqlString = "exec mostNVCT";
+				connect(SqlString, dgvMostNV);
+			}
+			else if (cbbChiNhanh.SelectedIndex == CN)
+			{
+				SqlString = "exec mostNVCN";
+				connect(SqlString, dgvMostNV);
+			}
+			else
+			{
+				SqlString = "exec LINK.QLDA.[dbo].mostNVCN";
+				connect(SqlString, dgvMostNV);
+			}
+		}
 
 		private void cbbChiNhanh_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			getNV();
 			getDA();
 			getLuong();
+			getMostDA();
+			getMostNV();
 		}
 
 		private void tsmiSuaNV_Click(object sender, EventArgs e)
@@ -215,17 +271,17 @@ namespace QLDA
 			string SqlString;
 			if (cbbChiNhanh.SelectedIndex == 0)
 			{
-				SqlString = String.Format("exec luongThangCT '{0}', '{1}'", dtpFrom.Text, dtpTo.Text);
+				SqlString = String.Format("exec luongThangCT '{0}', '{1}'", dtpTime.Value.ToString("MM"), dtpTime.Value.ToString("yyyy"));
 				connect(SqlString, dgvLuong);
 			}
 			else if (cbbChiNhanh.SelectedIndex == CN)
 			{
-				SqlString = String.Format("exec luongThangCN '{0}', '{1}'", dtpFrom.Text, dtpTo.Text); ;
+				SqlString = String.Format("exec luongThangCN '{0}', '{1}'", dtpTime.Value.ToString("MM"), dtpTime.Value.ToString("yyyy")); ;
 				connect(SqlString, dgvLuong);
 			}
 			else
 			{
-				SqlString = String.Format("exec LINK.QLDA.[dbo].luongThangCN '{0}', '{1}'", dtpFrom.Text, dtpTo.Text); ;
+				SqlString = String.Format("exec LINK.QLDA.[dbo].luongThangCN '{0}', '{1}'", dtpTime.Value.ToString("MM"), dtpTime.Value.ToString("yyyy")); ;
 				connect(SqlString, dgvLuong);
 			}
 		}
@@ -234,16 +290,13 @@ namespace QLDA
         {
 			if (cbLoc.Checked)
 			{
-				dtpFrom.Enabled = true;
-				dtpTo.Enabled = true;
-				btnLoc.Enabled = true;
+				dtpTime.Enabled = true;
+				getLuongThang();
 			}
 			else
 			{
 				getLuong();
-				dtpFrom.Enabled = false;
-				dtpTo.Enabled = false;
-				btnLoc.Enabled = false;
+				dtpTime.Enabled = false;
 			}
 		}
 
@@ -257,6 +310,18 @@ namespace QLDA
 			this.Dispose();
 			frmDangNhap frmDangNhap = new frmDangNhap();
 			frmDangNhap.ShowDialog();
+        }
+
+        private void dtpTime_ValueChanged(object sender, EventArgs e)
+        {
+			getLuongThang();
+        }
+
+        private void tsmiDATG_Click(object sender, EventArgs e)
+        {
+			DataRow row = (dgvNhanVien.SelectedRows[0].DataBoundItem as DataRowView).Row;
+			frmDATG datg = new frmDATG(row["ID"].ToString());
+			datg.ShowDialog();
         }
     }
 }
