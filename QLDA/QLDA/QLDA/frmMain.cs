@@ -89,11 +89,8 @@ namespace QLDA
 				cbbChiNhanh.Enabled = false;
 				tsmiCreateAcc.Enabled = false;
 				tcMenu.TabPages.Remove(tpThongKe);
-				tpNhanVien.ContextMenuStrip = null;
-				tpDuAn.ContextMenuStrip.Items.Remove(tsmiSuaDA);
+				tpNhanVien.ContextMenuStrip.Items.Remove(tsmiXoaNV);
 				tpDuAn.ContextMenuStrip.Items.Remove(tsmiKetThucDA);
-				btnThemDA.Enabled = false;
-				btnThemNV.Enabled = false;
 				getNV();
 				getDA();
 			}

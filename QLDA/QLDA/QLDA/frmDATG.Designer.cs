@@ -34,29 +34,31 @@
             // 
             // dgvDATG
             // 
+            this.dgvDATG.AllowUserToAddRows = false;
+            this.dgvDATG.AllowUserToDeleteRows = false;
             this.dgvDATG.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvDATG.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvDATG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDATG.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDATG.Location = new System.Drawing.Point(0, 0);
-            this.dgvDATG.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvDATG.Margin = new System.Windows.Forms.Padding(4);
             this.dgvDATG.MultiSelect = false;
             this.dgvDATG.Name = "dgvDATG";
             this.dgvDATG.ReadOnly = true;
             this.dgvDATG.RowHeadersWidth = 51;
             this.dgvDATG.RowTemplate.Height = 24;
             this.dgvDATG.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDATG.Size = new System.Drawing.Size(652, 253);
+            this.dgvDATG.Size = new System.Drawing.Size(654, 261);
             this.dgvDATG.TabIndex = 0;
             // 
             // frmDATG
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(652, 253);
+            this.ClientSize = new System.Drawing.Size(654, 261);
             this.Controls.Add(this.dgvDATG);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(670, 300);
             this.MinimizeBox = false;

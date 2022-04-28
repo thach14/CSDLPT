@@ -34,8 +34,32 @@ namespace QLDA
 			command.ExecuteNonQuery();
 			connection.Close();
 		}
+		private void getData(string idNV)
+		{
+			var connectionName = string.Format("CN{0}", CN);
+			var connectionString = ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
+			connectionString = string.Format(connectionString, "sa", "sa");
+			var connection = new SqlConnection();
+			connection.ConnectionString = connectionString;
+			var command = new SqlCommand(String.Format("select * from DuAn where ID = {0}", idNV), connection);
+			command.Connection = connection;
+			command.Connection.Open();
+			using (SqlDataReader sqlReader = command.ExecuteReader())
+			{
+				while (sqlReader.Read())
+				{
+					txtTenDA.Text = sqlReader["TenDuAn"].ToString();
+					mtbPhi.Text = sqlReader["KinhPhi"].ToString();
+					dtpNgayBD.Text = DateTime.Parse(sqlReader["NgayBatDau"].ToString()).ToString("MM/dd/yyyy");
+					mtpThoiHan.Text = sqlReader["ThoiHan"].ToString();
+				}
+				connection.Close();
+			}
+		}
 		private void frmDuAn_Load(object sender, EventArgs e)
         {
+			if(action != "Add")
+				getData(action);
 			cbbChiNhanh.SelectedIndex = CN - 1;
 		}
 
